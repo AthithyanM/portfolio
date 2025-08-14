@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Athithyan — Lead Unity Developer</title>
+  <meta name="description" content="Portfolio of Athithyan, Lead Unity Developer specializing in Gameplay and AR/VR." />
+  <style>
+    :root {
+      --bg: #0b0d12;
+      --panel: #121622;
+      --muted: #9aa3b2;
+      --text: #e6eaf2;
+      --brand: #7c5cff;
+      --brand-2: #2dd4bf;
+      --ring: rgba(124, 92, 255, .35);
+      --shadow: 0 10px 30px rgba(2, 6, 23, .45);
+      --radius: 16px;
+    }
+    @media (prefers-color-scheme: light) {
+      :root { --bg:#f7f8fb; --panel:#ffffff; --muted:#5b6472; --text:#10131a; --shadow:0 10px 30px rgba(2,6,23,.08); --ring: rgba(124,92,255,.18);}  
+    }
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body { margin:0; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji"; background: var(--bg); color: var(--text); line-height:1.6; }
+    a { color: inherit; text-decoration: none; }
+    .container { width:min(1100px, 92%); margin-inline:auto; }
+    .btn { display:inline-flex; align-items:center; gap:.6rem; padding:.8rem 1.1rem; border-radius:12px; background: linear-gradient(135deg, var(--brand), var(--brand-2)); color:white; font-weight:600; box-shadow: var(--shadow); border: 1px solid rgba(255,255,255,.08); }
+    .btn.ghost { background: transparent; color: var(--text); border: 1px solid rgba(255,255,255,.14); }
+    .btn:focus-visible { outline: 3px solid var(--ring); outline-offset: 2px; }
+    .tag { font-size:.8rem; padding:.25rem .55rem; border-radius:999px; border:1px solid rgba(255,255,255,.12); color: var(--muted); }
+    .nav { position:sticky; top:0; z-index:50; backdrop-filter: blur(10px); background: color-mix(in lab, var(--bg), transparent 35%); border-bottom:1px solid rgba(255,255,255,.08); }
+    .nav-inner { display:flex; align-items:center; justify-content:space-between; gap:1rem; padding:.8rem 0; }
+    .brand { display:flex; align-items:center; gap:.75rem; font-weight:800; letter-spacing:.2px; }
+    .brand .dot { width:10px; height:10px; border-radius:50%; background: linear-gradient(135deg, var(--brand), var(--brand-2)); box-shadow:0 0 0 4px var(--ring); }
+    .menu { display:flex; gap:1rem; align-items:center; }
+    .menu a { padding:.6rem .8rem; border-radius:10px; color: var(--muted); }
+    .menu a:hover { background: rgba(255,255,255,.06); color: var(--text); }
+    .mobile-toggle { display:none; }
+
+    header.hero { padding: 72px 0 36px; }
+    .hero-grid { display:grid; grid-template-columns: 1.2fr .8fr; gap:2rem; align-items:center; }
+    .hero-card { background: var(--panel); border:1px solid rgba(255,255,255,.08); border-radius: var(--radius); padding: 28px; box-shadow: var(--shadow); }
+    .headline { font-size: clamp(1.9rem, 1.4rem + 1.8vw, 3rem); line-height:1.15; margin: 0 0 .75rem; letter-spacing:.2px; }
+    .subhead { color: var(--muted); margin:0 0 1.2rem; }
+    .cta-row { display:flex; flex-wrap:wrap; gap:.75rem; }
+    .meta-row { display:flex; gap:.5rem; margin:.9rem 0 0; flex-wrap:wrap; }
+    .hero-right { display:grid; gap:1rem; }
+    .tile { background: var(--panel); border:1px solid rgba(255,255,255,.08); border-radius: var(--radius); padding: 18px; box-shadow: var(--shadow); }
+
+    section { padding: 30px 0; }
+    .section-title { display:flex; align-items:center; justify-content:space-between; margin-bottom:14px; }
+    .h2 { font-size: clamp(1.2rem, 1rem + .9vw, 2rem); margin:0; }
+    .grid { display:grid; grid-template-columns: repeat(12, 1fr); gap: 16px; }
+
+    .card { grid-column: span 6; background: var(--panel); border:1px solid rgba(255,255,255,.08); border-radius: var(--radius); overflow:hidden; display:flex; flex-direction:column; box-shadow: var(--shadow); transition: transform .2s ease; }
+    .card:hover { transform: translateY(-2px); }
+    .thumb { aspect-ratio: 16 / 9; background: linear-gradient(135deg, #1f2341, #0e1224); display:grid; place-items:center; color:#cfd7ff; font-weight:700; letter-spacing:.6px; }
+    .card-body { padding: 16px; display:grid; gap:.5rem; }
+    .card-title { font-weight:700; margin:0; }
+    .card-desc { color: var(--muted); margin:0; }
+    .card-tags { display:flex; gap:.4rem; flex-wrap:wrap; margin-top:.25rem; }
+    .card-actions { display:flex; gap:.6rem; margin-top:.6rem; }
+
+    .skills { display:flex; flex-wrap:wrap; gap:.5rem; }
+    .list { list-style:none; padding:0; margin:0; display:grid; gap:.5rem; }
+    .list li { display:flex; gap:.6rem; align-items:center; color: var(--muted); }
+    .dot-sm { width:6px; height:6px; border-radius:50%; background: var(--brand-2); }
+
+    footer { padding:40px 0 80px; color: var(--muted); text-align:center; }
+
+    @media (max-width: 860px) {
+      .hero-grid { grid-template-columns: 1fr; }
+      .card { grid-column: span 12; }
+      .menu { display:none; }
+      .mobile-toggle { display:inline-flex; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="container nav-inner">
+      <div class="brand">
+        <span class="dot" aria-hidden="true"></span>
+        <span>Athithyan</span>
+        <span class="tag">Lead Unity Developer</span>
+      </div>
+      <div class="menu" role="navigation" aria-label="Primary">
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#experience">Experience</a>
+        <a href="#contact">Contact</a>
+        <a href="#" class="btn ghost" id="download-resume">Download CV</a>
+      </div>
+      <button class="mobile-toggle btn ghost" aria-label="Open menu" onclick="document.querySelector('.drawer').showModal()">Menu</button>
+    </div>
+  </nav>
+
+  <dialog class="drawer" style="border:0; border-radius: 14px; padding: 0; width:min(520px,92%); background:var(--panel); color:var(--text)">
+    <div style="padding:18px 18px 6px; display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid rgba(255,255,255,.08)">
+      <strong>Menu</strong>
+      <button class="btn ghost" onclick="this.closest('dialog').close()">Close</button>
+    </div>
+    <div style="padding: 10px 18px 18px; display:grid; gap:.5rem">
+      <a href="#projects" onclick="this.closest('dialog').close()">Projects</a>
+      <a href="#skills" onclick="this.closest('dialog').close()">Skills</a>
+      <a href="#experience" onclick="this.closest('dialog').close()">Experience</a>
+      <a href="#contact" onclick="this.closest('dialog').close()">Contact</a>
+      <a href="#" class="btn" onclick="this.closest('dialog').close()">Download CV</a>
+    </div>
+  </dialog>
+
+  <header class="hero container">
+    <div class="hero-grid">
+      <div class="hero-card">
+        <h1 class="headline">Building immersive worlds with Unity — Gameplay • AR • VR</h1>
+        <p class="subhead">Lead Unity Developer with 8+ years across gameplay programming and AR/VR apps. I craft performant systems, smooth interactions, and delightful player experiences.</p>
+        <div class="cta-row">
+          <a class="btn" href="#projects">View Projects</a>
+          <a class="btn ghost" href="#contact">Contact</a>
+        </div>
+        <div class="meta-row">
+          <span class="tag">Open to roles</span>
+          <span class="tag">Remote / Onsite</span>
+          <span class="tag">India (IST)</span>
+        </div>
+      </div>
+      <div class="hero-right">
+        <div class="tile">
+          <strong>Quick Stats</strong>
+          <ul class="list" style="margin-top:.6rem">
+            <li><span class="dot-sm"></span> 8+ years experience</li>
+            <li><span class="dot-sm"></span> 5 yrs AR/VR apps • 2.5 yrs gameplay</li>
+            <li><span class="dot-sm"></span> Shipped XR & mobile products</li>
+          </ul>
+        </div>
+        <div class="tile">
+          <strong>Focus</strong>
+          <div class="skills" style="margin-top:.6rem">
+            <span class="tag">Gameplay Systems</span>
+            <span class="tag">Unity DOTS</span>
+            <span class="tag">Netcode</span>
+            <span class="tag">ARFoundation</span>
+            <span class="tag">8th Wall</span>
+            <span class="tag">OpenCV</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- PROJECTS -->
+    <section id="projects">
+      <div class="section-title">
+        <h2 class="h2">Projects</h2>
+        <div class="skills">
+          <button class="tag" data-filter="all">All</button>
+          <button class="tag" data-filter="VR">VR</button>
+          <button class="tag" data-filter="AR">AR</button>
+          <button class="tag" data-filter="Mobile">Mobile</button>
+          <button class="tag" data-filter="Game">Games</button>
+        </div>
+      </div>
+      <div class="grid" id="project-grid">
+        <!-- Duplicate/modify these cards with your real links/screens -->
+        <!-- <article class="card" data-tags="VR">
+          <div class="thumb">XRWorkflow</div>
+          <div class="card-body">
+            <h3 class="card-title">XRWorkflow (VR)</h3>
+            <p class="card-desc">Meta Quest 3 training & demo app using OVR with AI sales agent.</p>
+            <div class="card-tags">
+              <span class="tag">Quest 3</span><span class="tag">OVR</span><span class="tag">AI agent</span>
+            </div>
+            <div class="card-actions">
+              <a class="btn" href="#" target="_blank" rel="noreferrer">Demo</a>
+              <a class="btn ghost" href="#" target="_blank" rel="noreferrer">GitHub</a>
+            </div>
+          </div>
+        </article> -->
+
+        <!-- <article class="card" data-tags="AR">
+          <div class="thumb">OneXR AR</div>
+          <div class="card-body">
+            <h3 class="card-title">OneXR AR</h3>
+            <p class="card-desc">Cross‑platform AR experiences with ARFoundation for interactive placement.</p>
+            <div class="card-tags"><span class="tag">ARFoundation</span><span class="tag">iOS/Android</span></div>
+            <div class="card-actions"><a class="btn ghost" href="#">Case Study</a></div>
+          </div>
+        </article> -->
+
+        <!-- <article class="card" data-tags="AR">
+          <div class="thumb">Xperia (Triveni)</div>
+          <div class="card-body">
+            <h3 class="card-title">Xperia (Triveni)</h3>
+            <p class="card-desc">WebAR marketing app built with 8th Wall for interactive product try‑ons.</p>
+            <div class="card-tags"><span class="tag">8th Wall</span><span class="tag">WebAR</span></div>
+            <div class="card-actions"><a class="btn ghost" href="#">Live Link</a></div>
+          </div>
+        </article> -->
+
+        <!-- <article class="card" data-tags="AR">
+          <div class="thumb">Tint AR (Idex)</div>
+          <div class="card-body">
+            <h3 class="card-title">Tint AR (Idex)</h3>
+            <p class="card-desc">Preview wall paints in real rooms; OpenCV assisted color accuracy.</p>
+            <div class="card-tags"><span class="tag">OpenCV</span><span class="tag">AR</span></div>
+            <div class="card-actions"><a class="btn ghost" href="#">Case Study</a></div>
+          </div>
+        </article> -->
+
+        <article class="card" data-tags="AR">
+          <div class="thumb">RRSignature Fans</div>
+          <div class="card-body">
+            <h3 class="card-title">RRSignature Fans</h3>
+            <p class="card-desc">AR lighting layout & customization with real‑time scene placement.</p>
+            <div class="card-tags"><span class="tag">AR</span><span class="tag">Lighting</span></div>
+            <div class="card-actions"><a class="btn" href="https://play.google.com/store/apps/details?id=com.rrglobal.rrsignaturefanshome">Live Link</a></div>
+          </div>
+        </article>
+
+        <!-- <article class="card" data-tags="AR">
+          <div class="thumb">Suba</div>
+          <div class="card-body">
+            <h3 class="card-title">Suba</h3>
+            <p class="card-desc">Real‑estate AR walkthroughs with interactive 3D environments.</p>
+            <div class="card-tags"><span class="tag">AR</span><span class="tag">Real Estate</span></div>
+            <div class="card-actions"><a class="btn ghost" href="#">Case Study</a></div>
+          </div>
+        </article> -->
+
+        <!-- <article class="card" data-tags="AR">
+          <div class="thumb">Hajj</div>
+          <div class="card-body">
+            <h3 class="card-title">Hajj (AR)</h3>
+            <p class="card-desc">Educational AR guide through Hajj rituals using immersive 3D.</p>
+            <div class="card-tags"><span class="tag">Education</span><span class="tag">AR</span></div>
+            <div class="card-actions"><a class="btn ghost" href="#">Case Study</a></div>
+          </div>
+        </article> -->
+
+        <article class="card" data-tags="Mobile">
+          <div class="thumb">Shalimar ColorSpace</div>
+          <div class="card-body">
+            <h3 class="card-title">Shalimar Paints ColorSpace</h3>
+            <p class="card-desc">Runtime wall‑painting simulation with OpenCV on mobile.</p>
+            <div class="card-tags"><span class="tag">OpenCV</span><span class="tag">Mobile</span></div>
+            <div class="card-actions"><a class="btn" href="https://play.google.com/store/apps/details?id=com.shalimarpaints.colorspace&hl=en_IN">Live Link</a></div>
+          </div>
+        </article>
+
+        <article class="card" data-tags="Mobile">
+          <div class="thumb">Tada Time</div>
+          <div class="card-body">
+            <h3 class="card-title">Tada Time</h3>
+            <p class="card-desc">3D avatar creator with customization & animation features.</p>
+            <div class="card-tags"><span class="tag">Avatars</span><span class="tag">3D</span></div>
+            <div class="card-actions"><a class="btn" href="https://play.google.com/store/apps/details?id=com.augray.avmessage&hl=en_IN&gl=US">Live Link</a></div>
+          </div>
+        </article>
+
+        <article class="card" data-tags="Game">
+          <div class="thumb">Choco Bees</div>
+          <div class="card-body">
+            <h3 class="card-title">Choco Bees</h3>
+            <p class="card-desc">Casual honeycomb puzzle with satisfying feedback loops.</p>
+            <div class="card-tags"><span class="tag">Puzzle</span><span class="tag">Mobile</span></div>
+            <div class="card-actions"><a class="btn ghost" href="https://drive.google.com/file/d/1fMQHLMLTu4KJL5D_yWsMaZ_j8Vcwl7tV/view">Demo</a></div>
+          </div>
+        </article>
+
+        <article class="card" data-tags="Game">
+          <div class="thumb">Block Crafting</div>
+          <div class="card-body">
+            <h3 class="card-title">Block Crafting</h3>
+            <p class="card-desc">Block arrangement challenges with smooth UX.</p>
+            <div class="card-tags"><span class="tag">Puzzle</span></div>
+            <div class="card-actions"><a class="btn ghost" href="https://drive.google.com/file/d/15JbF1eDZU1aHwbbf0PS2anTVE3JMWNM1/view">Demo</a></div>
+          </div>
+        </article>
+
+        <article class="card" data-tags="Game">
+          <div class="thumb">Ancient Blox</div>
+          <div class="card-body">
+            <h3 class="card-title">Ancient Blox</h3>
+            <p class="card-desc">Tile‑matching game with ancient‑themed aesthetics.</p>
+            <div class="card-tags"><span class="tag">Puzzle</span></div>
+            <div class="card-actions"><a class="btn ghost" href="https://drive.google.com/file/d/1fdsYlKCWXhmjd56bR9e2vMomY52HeDoL/view">Demo</a></div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills">
+      <div class="section-title">
+        <h2 class="h2">Skills</h2>
+      </div>
+      <div class="skills">
+        <span class="tag">C#</span>
+        <span class="tag">Unity</span>
+        <span class="tag">DOTS</span>
+        <span class="tag">Netcode</span>
+        <span class="tag">ARFoundation</span>
+        <span class="tag">8th Wall</span>
+        <span class="tag">EasyAR</span>
+        <span class="tag">OpenCV</span>
+        <span class="tag">XR Interaction</span>
+        <span class="tag">Gameplay Architecture</span>
+        <span class="tag">SOLID</span>
+      </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section id="experience">
+      <div class="section-title">
+        <h2 class="h2">Experience</h2>
+      </div>
+      <div class="grid">
+        <div class="card" style="grid-column: span 12;">
+          <div class="card-body">
+            <h3 class="card-title">Lead Unity Developer — Augray Pvt Ltd</h3>
+            <p class="card-desc">Led gameplay, AR/VR initiatives; mentored team; shipped client projects. <!-- Update role details, dates --></p>
+            <ul class="list" style="margin-top:.5rem">
+              <li><span class="dot-sm"></span> Architected XR apps using ARFoundation & 8th Wall</li>
+              <li><span class="dot-sm"></span> Implemented performant gameplay systems (DOTS/Netcode)</li>
+              <li><span class="dot-sm"></span> Drove code quality with SOLID & reviews</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+      <div class="section-title">
+        <h2 class="h2">Get in Touch</h2>
+      </div>
+      <div class="grid">
+        <div class="card" style="grid-column: span 12;">
+          <div class="card-body">
+            <p class="card-desc">Email: <a href="mailto:athisthings@gmail.com">athisthings@gmail.com</a> • LinkedIn: <a href="www.linkedin.com/in/athithyan-m-099274165" target="_blank" rel="noreferrer">LinkedIn Profile Link</a></p>
+            <div class="card-actions">
+              <a class="btn" href="#" target="_blank" rel="noreferrer">Download CV</a>
+              <a class="btn ghost" href="mailto:athisthings@gmail.com">Email Me</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">© <span id="y"></span> Athithyan · Built with vanilla HTML/CSS</div>
+  </footer>
+
+  <script>
+    // current year
+    document.getElementById('y').textContent = new Date().getFullYear();
+
+    // simple filter
+    const btns = document.querySelectorAll('[data-filter]');
+    const cards = document.querySelectorAll('#project-grid .card');
+    btns.forEach(b=> b.addEventListener('click', () => {
+      const f = b.getAttribute('data-filter');
+      btns.forEach(x=>x.classList.remove('active'));
+      b.classList.add('active');
+      cards.forEach(c => {
+        c.style.display = (f === 'all' || c.getAttribute('data-tags').includes(f)) ? '' : 'none';
+      });
+    }));
+
+    // smooth scroll for same-page links
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        const id = a.getAttribute('href');
+        if (id.length > 1) {
+          e.preventDefault();
+          document.querySelector(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+  </script>
+</body>
+</html>
